@@ -1,0 +1,42 @@
+﻿<Page x:Class="Sharpimote.DevicesManager"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Sharpimote"
+      mc:Ignorable="d" d:DesignWidth="800"
+      Title="DevicesManager" Height="66" Width="800">
+    <Page.Resources>
+        <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
+            <Border Background="White"
+                x:Name="Bd"
+                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="13">
+                <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+        </ControlTemplate>
+        <Style TargetType="Button" x:Key="TabButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="12" Background="White" BorderBrush="Gray" BorderThickness="1">
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border CornerRadius="9" Background="#F0F0F0" Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <TextBox Foreground="Gray" Padding="10 0" VerticalContentAlignment="Center" Text="Search devices" Template="{StaticResource TextBoxBaseControlTemplate}" MinWidth="350" Margin="8"/>
+                <Button Cursor="Hand" Margin="300 8" Style="{StaticResource TabButton}" Content="New device" Padding="10 0" Click="NewConn"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

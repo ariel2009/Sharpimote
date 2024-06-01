@@ -1,0 +1,46 @@
+﻿<Page x:Class="Sharpimote.Welcome"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Sharpimote"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Welcome">
+    <Page.Resources>
+        <Style TargetType="Button" x:Key="TabButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="15" Background="#e8ef12" BorderBrush="#e8ef12" BorderThickness="0,1,1,0" >
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border Style="{StaticResource WrapPanelCorner}" Background="#F0F0F0" Margin="25">
+            <WrapPanel>
+                <Image Source="/Resources/Images/WelcomeImg.png"  Margin="50"/>
+            </WrapPanel>
+        </Border>
+        <Grid Grid.Column="1" Height="300">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="120"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Image Source="/Resources/Images/SharpiMote.png" />
+            <TextBlock Foreground="#030303" Text="SharpiMote" Style="{DynamicResource Hatten}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0" FontSize="40" FontWeight="Bold"/>
+            <TextBlock Foreground="#030303" Text="Remote Control" Style="{DynamicResource Hatten}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,70,0,0" FontSize="20"/>
+            <Button Cursor="Hand" Padding="40 5" Foreground="White" Style="{DynamicResource TabButton}" Content="Start" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="15" Margin="0,15,0,0" Click="Button_Click"></Button>
+        </Grid>
+    </Grid>
+</Page>
