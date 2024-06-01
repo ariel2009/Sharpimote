@@ -9,21 +9,21 @@ using System.Net.Sockets;
 
 namespace SharpiMoteServer.Networking
 {
-    internal class RemotedClientsSession : TcpSession
+    internal class BaseSession : TcpSession
     {
-        public RemotedClientsSession(TcpServer server) : base(server) { }
+        public BaseSession(TcpServer server) : base(server) { }
         protected override void OnConnected()
         {
-            Console.WriteLine($"Chat TCP session with {Id} connected!");
+            Console.WriteLine($"Sharpimote TCP session with {Id} connected!");
 
             // Send invite message
-            string message = "Hello from TCP chat! Please send a message or '!' to disconnect the client!";
+            string message = "Hello from TCP Sharpimote! Please send a message or '!' to disconnect the client!";
             SendAsync(message);
         }
 
         protected override void OnDisconnected()
         {
-            Console.WriteLine($"Chat TCP session with Id {Id} disconnected!");
+            Console.WriteLine($"Sharpimote TCP session with Id {Id} disconnected!");
         }
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
@@ -41,7 +41,7 @@ namespace SharpiMoteServer.Networking
 
         protected override void OnError(SocketError error)
         {
-            Console.WriteLine($"Chat TCP session caught an error with code {error}");
+            Console.WriteLine($"Sharpimote TCP session caught an error with code {error}");
         }
     }
 }
