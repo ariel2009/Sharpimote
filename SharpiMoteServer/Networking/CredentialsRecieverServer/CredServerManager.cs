@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetCoreServer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -16,7 +17,10 @@ namespace SharpiMoteServer.Networking.CredentialsRecieverServer
         }
         public void StartServer()
         {
-            
+            credRecieverServer.Start();
+        }
+        public void StopServer() {
+            credRecieverServer.Stop();
         }
     }
 }
