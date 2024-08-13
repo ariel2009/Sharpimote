@@ -1,4 +1,6 @@
 ﻿using SharpimoteClient.Credentials;
+using SharpimoteClient.Networking;
+using SharpimoteClient.Networking.CredentialsSenderClient;
 using SharpimoteClient.Style;
 using System;
 using System.Collections.Generic;
@@ -28,6 +30,7 @@ namespace SharpimoteClient
         {
             InitializeComponent();
             InitializeCred();
+            InitializeClient();
             seeker = new(PasswordText, passwordField);
         }
         private void InitializeCred()
@@ -55,6 +58,13 @@ namespace SharpimoteClient
         private void SeekPassword_MouseUp(object sender, MouseButtonEventArgs e)
         {
             seeker.Hide();
+        }
+        private void InitializeClient()
+        {
+            CredentialsJSON initialCreds = new CredentialsJSON(NetworkProvider.GetLocalIPAddress(), CodeText.Text, passwordField.Password);
+            CredClientManager client = new CredClientManager();
+            client.StartClient();
+            client.SerializeCredAndSend(initialCreds);
         }
     }
 }

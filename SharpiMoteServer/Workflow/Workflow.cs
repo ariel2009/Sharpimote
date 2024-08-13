@@ -56,15 +56,20 @@ namespace SharpiMoteServer.Workflow
         public virtual void AfterServerUpState()
         {
             visualization.AfterServerUpState();
-            bool nextExecution = WorkflowOperations.AfterServerUpState();
+            var nextExecution = WorkflowOperations.AfterServerUpState(); // To enable async function of key reading
             previousState = STATES.AFTER_SERVER_UP;
-            if (nextExecution)
+            while (nextExecution == AFTER_SERVER_UP_STATE.NONE)
             {
-                StopServerState();
-            }
-            else
-            {
-                StopWorkflow();
+                visualization.ShowConnections();
+                switch (nextExecution)
+                {
+                    case AFTER_SERVER_UP_STATE.STOP:
+                        StopServerState();
+                        break;
+                    case AFTER_SERVER_UP_STATE.EXIT:
+                        StopWorkflow();
+                        break;
+                }
             }
         }
         public void StopServerState()

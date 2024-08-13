@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NetCoreServer;
 using System.Net;
 using System.Net.Sockets;
+using SharpiMoteServer.Workflow;
 
 namespace SharpiMoteServer.Networking
 {
@@ -14,7 +15,7 @@ namespace SharpiMoteServer.Networking
         public BaseSession(TcpServer server) : base(server) { }
         protected override void OnConnected()
         {
-            Console.WriteLine($"Sharpimote TCP session with {Id} connected!");
+            WorkflowVisualization.additionalText += $"Sharpimote TCP session with {Id} connected!";
 
             // Send invite message
             string message = "Hello from TCP Sharpimote! Please send a message or '!' to disconnect the client!";

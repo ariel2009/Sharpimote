@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace SharpiMoteServer.Workflow
 {
     internal class WorkflowVisualization : IWorkflow
     {
+        public static string additionalText = string.Empty;
         public WorkflowVisualization()
         {
 
@@ -28,6 +30,7 @@ namespace SharpiMoteServer.Workflow
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Server is up!");
             Console.WriteLine("Press S to stop server or ESC to exit");
+
         }
         public void StopWorkflow()
         {
@@ -50,6 +53,27 @@ namespace SharpiMoteServer.Workflow
         public void BackFromStopWorkflow()
         {
             Console.Clear();
+        }
+        public void ShowConnections()
+        {
+            showAdditionalText(ConsoleColor.Blue, ConsoleColor.Green);
+        }
+        private void showAdditionalText(ConsoleColor color, ConsoleColor previousColor)
+        {
+            string previousText = additionalText;
+            while(additionalText == string.Empty)
+            {
+                continue;
+            }
+            while (additionalText != string.Empty)
+            {
+                if (additionalText != previousText)
+                {
+                    Console.ForegroundColor = color;
+                    previousText = additionalText;
+                }
+            }
+            Console.ForegroundColor = previousColor;
         }
     }
 }

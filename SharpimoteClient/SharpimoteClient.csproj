@@ -34,6 +34,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="NetCoreServer" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Welcome.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

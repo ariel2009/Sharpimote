@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using SharpiMoteServer.Workflow;
 
 namespace SharpiMoteServer.Networking
 {
@@ -18,6 +19,10 @@ namespace SharpiMoteServer.Networking
         protected override void OnError(SocketError error)
         {
             Console.WriteLine($"Sharpimote TCP server caught an error with code {error}");
+        }
+        protected override void OnStopping()
+        {
+            WorkflowVisualization.additionalText = string.Empty;
         }
     }
 }
